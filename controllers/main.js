@@ -18,7 +18,27 @@ function getInputValue() {
     return employee;
 }
 
+function renderList() {
+    var htmlString = "";
+
+    for (var index = 0; index < employeeList.employees.length; index++) {
+        var currentEmployee = employeeList.employees[index];
+        htmlString += `
+            <tr class="text-center">
+                <td>${currentEmployee.username}</td>
+                <td>${currentEmployee.fullname}</td>
+                <td>${currentEmployee.email}</td>
+                <td>${currentEmployee.startDate}</td>
+                <td>${currentEmployee.position}</td>
+                <td>${currentEmployee.calcSalary()}</td>
+                <td>${currentEmployee.rating()}</td>
+            </tr>
+        `;
+    }
+}
+
 getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
-
+    employeeList.addEmployee(newEmployee);
+    renderList();
 }
