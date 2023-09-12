@@ -25,4 +25,20 @@ function Employee(username, fullname, email, password, startDate, baseSalary, po
         }
         return salary;
     };
+
+    this.rating = function () {
+        var ratingList = ["Nhân viên trung bình", "Nhân viên khá", "Nhân viên giỏi", "Nhân viên xuất sắc"];
+        var workingHourLevel = [160, 176, 192];
+        var ratingResult = "";
+        if (this.workingHours < workingHourLevel[0]) {
+            ratingResult = ratingList[0];
+        } else if (this.workingHours >= workingHourLevel[0] && this.workingHours < workingHourLevel[1]) {
+            ratingResult = ratingList[1];
+        } else if (this.workingHours >= workingHourLevel[1] && this.workingHours < workingHourLevel[2]) {
+            ratingResult = ratingList[2];
+        } else if (this.workingHours >= workingHourLevel[2]) {
+            ratingResult = ratingList[3];
+        }
+        return ratingResult;
+    }
 }
