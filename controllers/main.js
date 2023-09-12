@@ -1,3 +1,5 @@
+var employeeList = new EmployeeList;
+
 function getElement(selector) {
     return document.querySelector(selector);
 }
@@ -16,8 +18,7 @@ function getInputValue() {
     return employee;
 }
 
-getElement("#btnThemNV").onclick = getInputValue;
-
-function addEmployee() {
+getElement("#btnThemNV").onclick = function () {
+    var newEmployee = getInputValue();
 
 }
