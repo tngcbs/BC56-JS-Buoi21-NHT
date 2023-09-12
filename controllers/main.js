@@ -32,8 +32,8 @@ function renderList() {
                 <td>${currentEmployee.position}</td>
                 <td>${currentEmployee.calcSalary()}</td>
                 <td>${currentEmployee.rating()}</td>
-                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button></td>
-                <td><button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
+                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button>
+                <button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
             </tr>
         `;
     }
@@ -47,7 +47,25 @@ getElement("#btnThemNV").onclick = function () {
 };
 
 function editEmployee(username) {
+    getElement("#btnThem").click();
+    var currentEmployee = employeeList.getEmployeeDetails(username);
+    if (currentEmployee) {
+        getElement("#tknv").value = currentEmployee.username;
+        getElement("#tknv").disabled = true;
+        getElement("#name").value = currentEmployee.fullname;
+        getElement("#email").value = currentEmployee.email;
+        getElement("#password").value = currentEmployee.password;
+        getElement("#datepicker").value = currentEmployee.startDate;
+        getElement("#luongCB").value = currentEmployee.baseSalary;
+        getElement("#chucvu").value = currentEmployee.position;
+        getElement("#gioLam").value = currentEmployee.workingHours;
+    }
+}
 
+getElement("#btnCapNhat").onclick = function () {
+    var employee = getInputValue();
+    employeeList.updateEmployee(employee);
+    renderList(employeeList.employees);
 }
 
 function deleteEmployee(username) {

@@ -26,11 +26,10 @@ function EmployeeList() {
         }
     }
 
-    this.updateEmployee = function (username, fullname, email, password, startDate, baseSalary, position, workingHours) {
-        var employeeIndex = this.searchEmployee(username);
+    this.updateEmployee = function (employee) {
+        var employeeIndex = this.searchEmployee(employee.username);
         if (employeeIndex != -1) {
-            var currentEmployee = this.employees[employeeIndex];
-            Object.assign(currentEmployee,);
+            Object.assign(this.employees[employeeIndex], employee);
         }
     }
 
