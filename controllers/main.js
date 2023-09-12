@@ -32,6 +32,7 @@ function renderList() {
                 <td>${currentEmployee.position}</td>
                 <td>${currentEmployee.calcSalary()}</td>
                 <td>${currentEmployee.rating()}</td>
+                <td><button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
             </tr>
         `;
     }
@@ -41,5 +42,10 @@ function renderList() {
 getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
     employeeList.addEmployee(newEmployee);
-    renderList();
+    renderList(employeeList.employees);
+};
+
+function deleteEmployee(username) {
+    employeeList.deleteEmployee(username);
+    renderList(employeeList.employees);
 }
