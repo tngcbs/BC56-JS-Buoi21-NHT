@@ -18,6 +18,22 @@ function EmployeeList() {
         return employeeIndex;
     }
 
+    this.getEmployeeDetails = function (username) {
+        var employeeIndex = this.searchEmployee(username);
+        if (employeeIndex != -1) {
+            var currentEmployee = this.employees[employeeIndex];
+            return currentEmployee;
+        }
+    }
+
+    this.updateEmployee = function (username, fullname, email, password, startDate, baseSalary, position, workingHours) {
+        var employeeIndex = this.searchEmployee(username);
+        if (employeeIndex != -1) {
+            var currentEmployee = this.employees[employeeIndex];
+            Object.assign(currentEmployee,);
+        }
+    }
+
     this.deleteEmployee = function (username) {
         var employeeIndex = this.searchEmployee(username);
         if (employeeIndex != -1) {

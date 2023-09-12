@@ -32,6 +32,7 @@ function renderList() {
                 <td>${currentEmployee.position}</td>
                 <td>${currentEmployee.calcSalary()}</td>
                 <td>${currentEmployee.rating()}</td>
+                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button></td>
                 <td><button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
             </tr>
         `;
@@ -44,6 +45,10 @@ getElement("#btnThemNV").onclick = function () {
     employeeList.addEmployee(newEmployee);
     renderList(employeeList.employees);
 };
+
+function editEmployee(username) {
+
+}
 
 function deleteEmployee(username) {
     employeeList.deleteEmployee(username);
