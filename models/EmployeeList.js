@@ -1,0 +1,3 @@
+function EmployeeList() {
+    this.employees = [];
+}
