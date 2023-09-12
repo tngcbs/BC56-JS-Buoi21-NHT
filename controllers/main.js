@@ -35,6 +35,7 @@ function renderList() {
             </tr>
         `;
     }
+    getElement("#tableDanhSach").innerHTML = htmlString;
 }
 
 getElement("#btnThemNV").onclick = function () {
