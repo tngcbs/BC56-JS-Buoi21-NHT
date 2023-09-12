@@ -40,10 +40,23 @@ function renderList() {
     getElement("#tableDanhSach").innerHTML = htmlString;
 }
 
+function resetForm() {
+    getElement("#tknv").value = "";
+    getElement("#tknv").disabled = false;
+    getElement("#name").value = "";
+    getElement("#email").value = "";
+    getElement("#password").value = "";
+    getElement("#datepicker").value = "";
+    getElement("#luongCB").value = "";
+    getElement("#chucvu").value = "";
+    getElement("#gioLam").value = "";
+}
+
 getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
     employeeList.addEmployee(newEmployee);
     renderList(employeeList.employees);
+    resetForm();
 };
 
 function editEmployee(username) {
@@ -66,9 +79,39 @@ getElement("#btnCapNhat").onclick = function () {
     var employee = getInputValue();
     employeeList.updateEmployee(employee);
     renderList(employeeList.employees);
+    resetForm();
+    getElement("#btnDong").click();
+}
+
+getElement("#btnTimNV").onclick = function () {
+    var filter = getElement("#searchName").value;
+    var filterList = employeeList.searchEmployeeByRating(filter);
+    var htmlString = "";
+
+    for (var index = 0; index < filterList.length; index++) {
+        var currentEmployee = filterList[index];
+        htmlString += `
+            <tr class="text-center">
+                <td>${currentEmployee.username}</td>
+                <td>${currentEmployee.fullname}</td>
+                <td>${currentEmployee.email}</td>
+                <td>${currentEmployee.startDate}</td>
+                <td>${currentEmployee.position}</td>
+                <td>${currentEmployee.calcSalary()}</td>
+                <td>${currentEmployee.rating()}</td>
+                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button>
+                <button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
+            </tr>
+        `;
+    }
+    getElement("#tableDanhSach").innerHTML = htmlString;
 }
 
 function deleteEmployee(username) {
     employeeList.deleteEmployee(username);
     renderList(employeeList.employees);
+}
+
+getElement("#btnDong").onclick = function () {
+    resetForm();
 }

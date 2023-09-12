@@ -18,6 +18,17 @@ function EmployeeList() {
         return employeeIndex;
     }
 
+    this.searchEmployeeByRating = function (rating) {
+        var filterList = [];
+        for (var index = 0; index < this.employees.length; index++) {
+            var currentEmployee = this.employees[index];
+            if (currentEmployee.rating() === rating) {
+                filterList.push(currentEmployee);
+            }
+        }
+        return filterList;
+    }
+
     this.getEmployeeDetails = function (username) {
         var employeeIndex = this.searchEmployee(username);
         if (employeeIndex != -1) {
