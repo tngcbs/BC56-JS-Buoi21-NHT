@@ -5,7 +5,7 @@ function getElement(selector) {
 }
 
 function getInputValue() {
-    var username = getElement("#tknv").value;
+    var username = getElement("#tknv").value.trim();
     var fullname = getElement("#name").value;
     var email = getElement("#email").value;
     var password = getElement("#password").value;
@@ -54,9 +54,15 @@ function resetForm() {
 
 getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
-    employeeList.addEmployee(newEmployee);
-    renderList(employeeList.employees);
-    resetForm();
+    var valid = true;
+
+    valid &= isNotEmpty(newEmployee.username, "#tbTKNV", "Tài khoản không được để trống");
+    if (valid) {
+        var newEmployee = getInputValue();
+        employeeList.addEmployee(newEmployee);
+        renderList(employeeList.employees);
+        resetForm();
+    }
 };
 
 function editEmployee(username) {
@@ -114,4 +120,5 @@ function deleteEmployee(username) {
 
 getElement("#btnDong").onclick = function () {
     resetForm();
+    // displayNone(".sp-thongbao");
 }
