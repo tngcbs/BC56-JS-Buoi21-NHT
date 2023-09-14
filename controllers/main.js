@@ -56,7 +56,9 @@ getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
     var valid = true;
 
-    valid &= isNotEmpty(newEmployee.username, "#tbTKNV", "Tài khoản không được để trống");
+    valid &= isNotEmpty(newEmployee.username, "#tbTKNV", "Tài khoản không được để trống")
+        & isNotEmpty(newEmployee.fullname, "#tbTen", "Họ và tên không được để trống");
+
     if (valid) {
         var newEmployee = getInputValue();
         employeeList.addEmployee(newEmployee);
@@ -120,5 +122,5 @@ function deleteEmployee(username) {
 
 getElement("#btnDong").onclick = function () {
     resetForm();
-    // displayNone(".sp-thongbao");
+    displayNone(".sp-thongbao");
 }
