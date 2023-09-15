@@ -52,3 +52,15 @@ function validateEmail(email, idError, message) {
         return true;
     }
 }
+
+function validatePassword(password, idError, message) {
+    var element = getErrElement(idError);
+    var passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{6,10}$/;
+
+    if (!passwordRegex.test(password)) {
+        element.innerHTML = message;
+        return false;
+    } else {
+        return true;
+    }
+}
