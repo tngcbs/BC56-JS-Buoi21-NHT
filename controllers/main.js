@@ -56,9 +56,14 @@ getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
     var valid = true;
 
-    valid &= isNotEmpty(newEmployee.account, "#tbTKNV", "Tài khoản không được để trống.") && validateAccount(newEmployee.account, "#tbTKNV", "Tài khoản phải có từ 4 - 6 ký số.");
+    valid &= isNotEmpty(newEmployee.account, "#tbTKNV", "Tài khoản không được để trống")
+        && validateAccount(newEmployee.account, "#tbTKNV", "Tài khoản phải có từ 4 - 6 ký số");
 
-    valid &= isNotEmpty(newEmployee.fullname, "#tbTen", "Họ và tên không được để trống.");
+    valid &= isNotEmpty(newEmployee.fullname, "#tbTen", "Họ và tên không được để trống")
+        && validateName(newEmployee.fullname, "#tbTen", "Họ và tên phải là chữ");
+
+    valid &= isNotEmpty(newEmployee.email, "#tbEmail", "Email không được để trống")
+        && validateEmail(newEmployee.email, "#tbEmail", "Email không đúng định dạng");
 
     if (valid) {
         var newEmployee = getInputValue();
