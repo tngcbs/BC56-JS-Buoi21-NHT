@@ -1,78 +1,93 @@
-function getErrElement(idError) {
-    return document.querySelector(idError);
+function displayNotice(idError, message) {
+    var element = document.querySelector(idError);
+    element.innerHTML = message;
+    element.style.display = "inline";
+}
+
+function hideNotice(idError) {
+    var element = document.querySelector(idError);
+    element.innerHTML = "";
+    element.style.display = "none";
 }
 
 function isNotEmpty(value, idError, message) {
-    var element = getErrElement(idError);
-
     if (value.trim() === "") {
-        element.innerHTML = message;
-        element.style.display = 'inline';
+        displayNotice(idError, message);
         return false;
     } else {
-        element.innerHTML = "";
+        hideNotice(idError);
         return true;
     }
 }
 
 function validateAccount(account, idError, message) {
-    var element = getErrElement(idError);
     var numericRegex = /^[0-9]{4,6}$/;
 
     if (!numericRegex.test(account)) {
-        element.innerHTML = message;
+        displayNotice(idError, message);
         return false;
     } else {
-        element.innerHTML = "";
+        hideNotice(idError);
         return true;
     }
 }
 
 function validateName(fullname, idError, message) {
-    var element = getErrElement(idError);
     var nameRegex = /^[a-zA-Z\s\u00C0-\u1EF9]+$/;
 
     if (!nameRegex.test(fullname)) {
-        element.innerHTML = message;
+        displayNotice(idError, message);
         return false;
     } else {
-        element.innerHTML = "";
+        hideNotice(idError);
         return true;
     }
 }
 
 function validateEmail(email, idError, message) {
-    var element = getErrElement(idError);
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (!emailRegex.test(email)) {
-        element.innerHTML = message;
+        displayNotice(idError, message);
         return false;
     } else {
+        hideNotice(idError);
         return true;
     }
 }
 
 function validatePassword(password, idError, message) {
-    var element = getErrElement(idError);
     var passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{6,10}$/;
 
     if (!passwordRegex.test(password)) {
-        element.innerHTML = message;
+        displayNotice(idError, message);
         return false;
     } else {
+        hideNotice(idError);
         return true;
     }
 }
 
 function validateDate(date, idError, message) {
-    var element = getErrElement(idError);
     var dateRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{6,10}$/;
 
     if (!dateRegex.test(date)) {
-        element.innerHTML = message;
+        displayNotice(idError, message);
         return false;
     } else {
+        hideNotice(idError);
+        return true;
+    }
+}
+
+function validateSalary(salary, idError, message) {
+    var salaryRegex = /^1\d{6,7}$|^20000000$/;
+
+    if (!salaryRegex.test(salary.toString())) {
+        displayNotice(idError, message);
+        return false;
+    } else {
+        hideNotice(idError);
         return true;
     }
 }

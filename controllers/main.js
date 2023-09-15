@@ -71,6 +71,9 @@ getElement("#btnThemNV").onclick = function () {
     valid &= isNotEmpty(newEmployee.startDate, "#tbNgay", "Ngày không được để trống")
         && validateDate(newEmployee.startDate, "#tbNgay", "Ngày không đúng định dạng (dd/mm/yyyy)");
 
+    valid &= isNotEmpty(newEmployee.baseSalary, "#tbLuongCB", "Lương không được để trống")
+        && validateSalary(newEmployee.baseSalary, "#tbLuongCB", "Lương không đúng định dạng (1-20 triệu)");
+
     if (valid) {
         var newEmployee = getInputValue();
         employeeList.addEmployee(newEmployee);
