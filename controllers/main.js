@@ -78,10 +78,12 @@ function validation() {
 
     valid &= isNotEmtyNumber(newEmployee.workingHours, "#tbGiolam", "Giờ làm không được để trống")
         && validateWorkingHours(newEmployee.workingHours, "#tbGiolam", "Giờ làm không hợp lệ (nhập từ 80 đến 200 giờ)");
+
+    return valid;
 }
 
 getElement("#btnThemNV").onclick = function () {
-    validation();
+    var valid = validation();
     if (valid) {
         var newEmployee = getInputValue();
         employeeList.addEmployee(newEmployee);
@@ -107,6 +109,7 @@ function editEmployee(account) {
 }
 
 getElement("#btnCapNhat").onclick = function () {
+    validation();
     var employee = getInputValue();
     employeeList.updateEmployee(employee);
     renderList(employeeList.employees);
