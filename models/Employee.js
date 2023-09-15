@@ -1,5 +1,5 @@
-function Employee(username, fullname, email, password, startDate, baseSalary, position, workingHours) {
-    this.username = username;
+function Employee(account, fullname, email, password, startDate, baseSalary, position, workingHours) {
+    this.account = account;
     this.fullname = fullname;
     this.email = email;
     this.password = password;

@@ -5,7 +5,7 @@ function getElement(selector) {
 }
 
 function getInputValue() {
-    var username = getElement("#tknv").value.trim();
+    var account = getElement("#tknv").value.trim();
     var fullname = getElement("#name").value;
     var email = getElement("#email").value;
     var password = getElement("#password").value;
@@ -14,7 +14,7 @@ function getInputValue() {
     var position = getElement("#chucvu").value;
     var workingHours = +getElement("#gioLam").value;
 
-    var employee = new Employee(username, fullname, email, password, startDate, baseSalary, position, workingHours);
+    var employee = new Employee(account, fullname, email, password, startDate, baseSalary, position, workingHours);
     return employee;
 }
 
@@ -25,15 +25,15 @@ function renderList() {
         var currentEmployee = employeeList.employees[index];
         htmlString += `
             <tr class="text-center">
-                <td>${currentEmployee.username}</td>
+                <td>${currentEmployee.account}</td>
                 <td>${currentEmployee.fullname}</td>
                 <td>${currentEmployee.email}</td>
                 <td>${currentEmployee.startDate}</td>
                 <td>${currentEmployee.position}</td>
                 <td>${currentEmployee.calcSalary()}</td>
                 <td>${currentEmployee.rating()}</td>
-                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button>
-                <button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
+                <td><button type="button" onclick="editEmployee('${currentEmployee.account}')" id="btnEdit" class="btn btn-warning">Sửa</button>
+                <button type="button" onclick="deleteEmployee('${currentEmployee.account}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
             </tr>
         `;
     }
@@ -56,8 +56,13 @@ getElement("#btnThemNV").onclick = function () {
     var newEmployee = getInputValue();
     var valid = true;
 
-    valid &= isNotEmpty(newEmployee.username, "#tbTKNV", "Tài khoản không được để trống")
-        & isNotEmpty(newEmployee.fullname, "#tbTen", "Họ và tên không được để trống");
+    valid &= isNotEmpty(newEmployee.account, "#tbTKNV", "Tài khoản không được để trống")
+    // & isNotEmpty(newEmployee.fullname, "#tbTen", "Họ và tên không được để trống")
+    // & isNotEmpty(newEmployee.email, "#tbEmail", "Email không được để trống")
+    // & isNotEmpty(newEmployee.password, "#tbMatKhau", "Mật khẩu không được để trống")
+    // & isNotEmpty(newEmployee.startDate, "#tbNgay", "Ngày không được để trống")
+    // & isNotEmpty(newEmployee.baseSalary, "#tbLuongCB", "Lương cơ bản không được để trống")
+    // & isNotEmpty(newEmployee.workingHours, "#tbGiolam", "Giờ làm không được để trống");
 
     if (valid) {
         var newEmployee = getInputValue();
@@ -67,11 +72,11 @@ getElement("#btnThemNV").onclick = function () {
     }
 };
 
-function editEmployee(username) {
+function editEmployee(account) {
     getElement("#btnThem").click();
-    var currentEmployee = employeeList.getEmployeeDetails(username);
+    var currentEmployee = employeeList.getEmployeeDetails(account);
     if (currentEmployee) {
-        getElement("#tknv").value = currentEmployee.username;
+        getElement("#tknv").value = currentEmployee.account;
         getElement("#tknv").disabled = true;
         getElement("#name").value = currentEmployee.fullname;
         getElement("#email").value = currentEmployee.email;
@@ -100,23 +105,23 @@ getElement("#btnTimNV").onclick = function () {
         var currentEmployee = filterList[index];
         htmlString += `
             <tr class="text-center">
-                <td>${currentEmployee.username}</td>
+                <td>${currentEmployee.account}</td>
                 <td>${currentEmployee.fullname}</td>
                 <td>${currentEmployee.email}</td>
                 <td>${currentEmployee.startDate}</td>
                 <td>${currentEmployee.position}</td>
                 <td>${currentEmployee.calcSalary()}</td>
                 <td>${currentEmployee.rating()}</td>
-                <td><button type="button" onclick="editEmployee('${currentEmployee.username}')" id="btnEdit" class="btn btn-warning">Sửa</button>
-                <button type="button" onclick="deleteEmployee('${currentEmployee.username}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
+                <td><button type="button" onclick="editEmployee('${currentEmployee.account}')" id="btnEdit" class="btn btn-warning">Sửa</button>
+                <button type="button" onclick="deleteEmployee('${currentEmployee.account}')" id="btnDel" class="btn btn-danger">Xóa</button></td>
             </tr>
         `;
     }
     getElement("#tableDanhSach").innerHTML = htmlString;
 }
 
-function deleteEmployee(username) {
-    employeeList.deleteEmployee(username);
+function deleteEmployee(account) {
+    employeeList.deleteEmployee(account);
     renderList(employeeList.employees);
 }
 

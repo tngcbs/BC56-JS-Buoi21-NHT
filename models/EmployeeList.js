@@ -5,12 +5,12 @@ function EmployeeList() {
         this.employees.push(employee);
     };
 
-    this.searchEmployee = function (username) {
+    this.searchEmployee = function (account) {
         var employeeIndex = -1;
 
         for (var index = 0; index < this.employees.length; index++) {
             var currentEmployee = this.employees[index];
-            if (currentEmployee.username === username) {
+            if (currentEmployee.account === account) {
                 employeeIndex = index;
                 break;
             }
@@ -29,8 +29,8 @@ function EmployeeList() {
         return filterList;
     }
 
-    this.getEmployeeDetails = function (username) {
-        var employeeIndex = this.searchEmployee(username);
+    this.getEmployeeDetails = function (account) {
+        var employeeIndex = this.searchEmployee(account);
         if (employeeIndex != -1) {
             var currentEmployee = this.employees[employeeIndex];
             return currentEmployee;
@@ -38,14 +38,14 @@ function EmployeeList() {
     }
 
     this.updateEmployee = function (employee) {
-        var employeeIndex = this.searchEmployee(employee.username);
+        var employeeIndex = this.searchEmployee(employee.account);
         if (employeeIndex != -1) {
             Object.assign(this.employees[employeeIndex], employee);
         }
     }
 
-    this.deleteEmployee = function (username) {
-        var employeeIndex = this.searchEmployee(username);
+    this.deleteEmployee = function (account) {
+        var employeeIndex = this.searchEmployee(account);
         if (employeeIndex != -1) {
             this.employees.splice(employeeIndex, 1);
         }
