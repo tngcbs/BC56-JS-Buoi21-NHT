@@ -10,9 +10,9 @@ function getInputValue() {
     var email = getElement("#email").value;
     var password = getElement("#password").value;
     var startDate = getElement("#datepicker").value;
-    var baseSalary = +getElement("#luongCB").value;
+    var baseSalary = parseInt(getElement("#luongCB").value);
     var position = getElement("#chucvu").value;
-    var workingHours = +getElement("#gioLam").value;
+    var workingHours = parseInt(getElement("#gioLam").value);
 
     var employee = new Employee(account, fullname, email, password, startDate, baseSalary, position, workingHours);
     return employee;
@@ -71,8 +71,13 @@ getElement("#btnThemNV").onclick = function () {
     valid &= isNotEmpty(newEmployee.startDate, "#tbNgay", "Ngày không được để trống")
         && validateDate(newEmployee.startDate, "#tbNgay", "Ngày không đúng định dạng (dd/mm/yyyy)");
 
-    valid &= isNotEmpty(newEmployee.baseSalary, "#tbLuongCB", "Lương không được để trống")
-        && validateSalary(newEmployee.baseSalary, "#tbLuongCB", "Lương không đúng định dạng (1-20 triệu)");
+    valid &= isNotEmtyNumber(newEmployee.baseSalary, "#tbLuongCB", "Lương không được để trống")
+        && validateSalary(newEmployee.baseSalary, "#tbLuongCB", "Lương không đúng định dạng (từ 1 000 000 đến 20 000 000)");
+
+    valid &= validatePosition(newEmployee.position, "#pstDefault", "#tbChucVu", "Vui lòng chọn chức vụ");
+
+    valid &= isNotEmtyNumber(newEmployee.workingHours, "#tbGiolam", "Giờ làm không được để trống")
+        && validateWorkingHours(newEmployee.workingHours, "#tbGiolam", "Giờ làm không hợp lệ (nhập từ 80 đến 200 giờ)");
 
     if (valid) {
         var newEmployee = getInputValue();
