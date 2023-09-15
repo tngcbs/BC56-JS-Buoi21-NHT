@@ -64,3 +64,15 @@ function validatePassword(password, idError, message) {
         return true;
     }
 }
+
+function validateDate(date, idError, message) {
+    var element = getErrElement(idError);
+    var dateRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{6,10}$/;
+
+    if (!dateRegex.test(date)) {
+        element.innerHTML = message;
+        return false;
+    } else {
+        return true;
+    }
+}

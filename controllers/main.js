@@ -68,6 +68,9 @@ getElement("#btnThemNV").onclick = function () {
     valid &= isNotEmpty(newEmployee.password, "#tbMatKhau", "Mật khẩu không được để trống")
         && validatePassword(newEmployee.password, "#tbMatKhau", "Mật khẩu không đúng định dạng (từ 6-10 ký tự, chứa ít nhất 1 số, 1 chữ in hoa, 1 ký tự đặc biệt)");
 
+    valid &= isNotEmpty(newEmployee.startDate, "#tbNgay", "Ngày không được để trống")
+        && validateDate(newEmployee.startDate, "#tbNgay", "Ngày không đúng định dạng (dd/mm/yyyy)");
+
     if (valid) {
         var newEmployee = getInputValue();
         employeeList.addEmployee(newEmployee);
